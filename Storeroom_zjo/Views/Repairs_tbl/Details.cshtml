@@ -1,0 +1,98 @@
+﻿@model Storeroom_zjo.Models.Repairs_tbl
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Repairs_tbl</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfCarReception)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfCarReception)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RepairStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepairStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Station)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Station)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RepairEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepairEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantityOfParts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantityOfParts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customers_tbl.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customers_tbl.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parts_tbl.PartName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parts_tbl.PartName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRepair }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

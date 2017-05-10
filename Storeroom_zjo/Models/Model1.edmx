@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StoreroomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers_tbl">
+          <Key>
+            <PropertyRef Name="IdCustomer" />
+          </Key>
+          <Property Name="IdCustomer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdVehicle" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Parts_tbl">
+          <Key>
+            <PropertyRef Name="IdPart" />
+          </Key>
+          <Property Name="IdPart" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdManufacturer" Type="int" />
+          <Property Name="PartName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManufacturerCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Orginal" Type="bit" />
+          <Property Name="Artificial" Type="bit" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="MinimalStock" Type="int" />
+          <Property Name="AutomaticOrder" Type="bit" />
+        </EntityType>
+        <EntityType Name="PartsManufacturers_tbl">
+          <Key>
+            <PropertyRef Name="IdManufacturer" />
+          </Key>
+          <Property Name="IdManufacturer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Company" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Positions_tbl">
+          <Key>
+            <PropertyRef Name="IdPosition" />
+          </Key>
+          <Property Name="IdPosition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Repairs_tbl">
+          <Key>
+            <PropertyRef Name="IdRepair" />
+          </Key>
+          <Property Name="IdRepair" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCustomer" Type="int" />
+          <Property Name="DateOfCarReception" Type="datetime" />
+          <Property Name="RepairStartDate" Type="datetime" />
+          <Property Name="Station" Type="int" />
+          <Property Name="RepairEndDate" Type="datetime" />
+          <Property Name="IdPart" Type="int" />
+          <Property Name="QuantityOfParts" Type="int" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Cost" Type="money" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Users_tbl">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdPosition" Type="int" />
+          <Property Name="Permission" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Vehicles_tbl">
+          <Key>
+            <PropertyRef Name="IdVehicle" />
+          </Key>
+          <Property Name="IdVehicle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleBrand" Type="nvarchar" MaxLength="20" />
+          <Property Name="Model" Type="nvarchar" MaxLength="30" />
+          <Property Name="VehicleType" Type="nvarchar" MaxLength="50" />
+          <Property Name="VINnumber" Type="nvarchar(max)" />
+          <Property Name="REGnumber" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Customers_tbl_Vehicles_tbl">
+          <End Role="Vehicles_tbl" Type="Self.Vehicles_tbl" Multiplicity="0..1" />
+          <End Role="Customers_tbl" Type="Self.Customers_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles_tbl">
+              <PropertyRef Name="IdVehicle" />
+            </Principal>
+            <Dependent Role="Customers_tbl">
+              <PropertyRef Name="IdVehicle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parts_tbl_PartsManufacturers_tbl">
+          <End Role="PartsManufacturers_tbl" Type="Self.PartsManufacturers_tbl" Multiplicity="0..1" />
+          <End Role="Parts_tbl" Type="Self.Parts_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartsManufacturers_tbl">
+              <PropertyRef Name="IdManufacturer" />
+            </Principal>
+            <Dependent Role="Parts_tbl">
+              <PropertyRef Name="IdManufacturer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repairs_tbl_Customers_tbl">
+          <End Role="Customers_tbl" Type="Self.Customers_tbl" Multiplicity="0..1" />
+          <End Role="Repairs_tbl" Type="Self.Repairs_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers_tbl">
+              <PropertyRef Name="IdCustomer" />
+            </Principal>
+            <Dependent Role="Repairs_tbl">
+              <PropertyRef Name="IdCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repairs_tbl_Parts_tbl">
+          <End Role="Parts_tbl" Type="Self.Parts_tbl" Multiplicity="0..1" />
+          <End Role="Repairs_tbl" Type="Self.Repairs_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parts_tbl">
+              <PropertyRef Name="IdPart" />
+            </Principal>
+            <Dependent Role="Repairs_tbl">
+              <PropertyRef Name="IdPart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_tbl_Positions_tbl">
+          <End Role="Positions_tbl" Type="Self.Positions_tbl" Multiplicity="0..1" />
+          <End Role="Users_tbl" Type="Self.Users_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions_tbl">
+              <PropertyRef Name="IdPosition" />
+            </Principal>
+            <Dependent Role="Users_tbl">
+              <PropertyRef Name="IdPosition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreroomModelStoreContainer">
+          <EntitySet Name="Customers_tbl" EntityType="Self.Customers_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parts_tbl" EntityType="Self.Parts_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartsManufacturers_tbl" EntityType="Self.PartsManufacturers_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions_tbl" EntityType="Self.Positions_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Repairs_tbl" EntityType="Self.Repairs_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users_tbl" EntityType="Self.Users_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicles_tbl" EntityType="Self.Vehicles_tbl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Customers_tbl_Vehicles_tbl" Association="Self.FK_Customers_tbl_Vehicles_tbl">
+            <End Role="Vehicles_tbl" EntitySet="Vehicles_tbl" />
+            <End Role="Customers_tbl" EntitySet="Customers_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parts_tbl_PartsManufacturers_tbl" Association="Self.FK_Parts_tbl_PartsManufacturers_tbl">
+            <End Role="PartsManufacturers_tbl" EntitySet="PartsManufacturers_tbl" />
+            <End Role="Parts_tbl" EntitySet="Parts_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repairs_tbl_Customers_tbl" Association="Self.FK_Repairs_tbl_Customers_tbl">
+            <End Role="Customers_tbl" EntitySet="Customers_tbl" />
+            <End Role="Repairs_tbl" EntitySet="Repairs_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repairs_tbl_Parts_tbl" Association="Self.FK_Repairs_tbl_Parts_tbl">
+            <End Role="Parts_tbl" EntitySet="Parts_tbl" />
+            <End Role="Repairs_tbl" EntitySet="Repairs_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_tbl_Positions_tbl" Association="Self.FK_Users_tbl_Positions_tbl">
+            <End Role="Positions_tbl" EntitySet="Positions_tbl" />
+            <End Role="Users_tbl" EntitySet="Users_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StoreroomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customers_tbl">
+          <Key>
+            <PropertyRef Name="IdCustomer" />
+          </Key>
+          <Property Name="IdCustomer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdVehicle" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Vehicles_tbl" Relationship="Self.FK_Customers_tbl_Vehicles_tbl" FromRole="Customers_tbl" ToRole="Vehicles_tbl" />
+          <NavigationProperty Name="Repairs_tbl" Relationship="Self.FK_Repairs_tbl_Customers_tbl" FromRole="Customers_tbl" ToRole="Repairs_tbl" />
+        </EntityType>
+        <EntityType Name="Parts_tbl">
+          <Key>
+            <PropertyRef Name="IdPart" />
+          </Key>
+          <Property Name="IdPart" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdManufacturer" Type="Int32" />
+          <Property Name="PartName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManufacturerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Orginal" Type="Boolean" />
+          <Property Name="Artificial" Type="Boolean" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="MinimalStock" Type="Int32" />
+          <Property Name="AutomaticOrder" Type="Boolean" />
+          <NavigationProperty Name="PartsManufacturers_tbl" Relationship="Self.FK_Parts_tbl_PartsManufacturers_tbl" FromRole="Parts_tbl" ToRole="PartsManufacturers_tbl" />
+          <NavigationProperty Name="Repairs_tbl" Relationship="Self.FK_Repairs_tbl_Parts_tbl" FromRole="Parts_tbl" ToRole="Repairs_tbl" />
+        </EntityType>
+        <EntityType Name="PartsManufacturers_tbl">
+          <Key>
+            <PropertyRef Name="IdManufacturer" />
+          </Key>
+          <Property Name="IdManufacturer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Parts_tbl" Relationship="Self.FK_Parts_tbl_PartsManufacturers_tbl" FromRole="PartsManufacturers_tbl" ToRole="Parts_tbl" />
+        </EntityType>
+        <EntityType Name="Positions_tbl">
+          <Key>
+            <PropertyRef Name="IdPosition" />
+          </Key>
+          <Property Name="IdPosition" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users_tbl" Relationship="Self.FK_Users_tbl_Positions_tbl" FromRole="Positions_tbl" ToRole="Users_tbl" />
+        </EntityType>
+        <EntityType Name="Repairs_tbl">
+          <Key>
+            <PropertyRef Name="IdRepair" />
+          </Key>
+          <Property Name="IdRepair" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCustomer" Type="Int32" />
+          <Property Name="DateOfCarReception" Type="DateTime" Precision="3" />
+          <Property Name="RepairStartDate" Type="DateTime" Precision="3" />
+          <Property Name="Station" Type="Int32" />
+          <Property Name="RepairEndDate" Type="DateTime" Precision="3" />
+          <Property Name="IdPart" Type="Int32" />
+          <Property Name="QuantityOfParts" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Customers_tbl" Relationship="Self.FK_Repairs_tbl_Customers_tbl" FromRole="Repairs_tbl" ToRole="Customers_tbl" />
+          <NavigationProperty Name="Parts_tbl" Relationship="Self.FK_Repairs_tbl_Parts_tbl" FromRole="Repairs_tbl" ToRole="Parts_tbl" />
+        </EntityType>
+        <EntityType Name="Users_tbl">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdPosition" Type="Int32" />
+          <Property Name="Permission" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Positions_tbl" Relationship="Self.FK_Users_tbl_Positions_tbl" FromRole="Users_tbl" ToRole="Positions_tbl" />
+        </EntityType>
+        <EntityType Name="Vehicles_tbl">
+          <Key>
+            <PropertyRef Name="IdVehicle" />
+          </Key>
+          <Property Name="IdVehicle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleBrand" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VINnumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="REGnumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customers_tbl" Relationship="Self.FK_Customers_tbl_Vehicles_tbl" FromRole="Vehicles_tbl" ToRole="Customers_tbl" />
+        </EntityType>
+        <Association Name="FK_Customers_tbl_Vehicles_tbl">
+          <End Role="Vehicles_tbl" Type="Self.Vehicles_tbl" Multiplicity="0..1" />
+          <End Role="Customers_tbl" Type="Self.Customers_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles_tbl">
+              <PropertyRef Name="IdVehicle" />
+            </Principal>
+            <Dependent Role="Customers_tbl">
+              <PropertyRef Name="IdVehicle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repairs_tbl_Customers_tbl">
+          <End Role="Customers_tbl" Type="Self.Customers_tbl" Multiplicity="0..1" />
+          <End Role="Repairs_tbl" Type="Self.Repairs_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers_tbl">
+              <PropertyRef Name="IdCustomer" />
+            </Principal>
+            <Dependent Role="Repairs_tbl">
+              <PropertyRef Name="IdCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parts_tbl_PartsManufacturers_tbl">
+          <End Role="PartsManufacturers_tbl" Type="Self.PartsManufacturers_tbl" Multiplicity="0..1" />
+          <End Role="Parts_tbl" Type="Self.Parts_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartsManufacturers_tbl">
+              <PropertyRef Name="IdManufacturer" />
+            </Principal>
+            <Dependent Role="Parts_tbl">
+              <PropertyRef Name="IdManufacturer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repairs_tbl_Parts_tbl">
+          <End Role="Parts_tbl" Type="Self.Parts_tbl" Multiplicity="0..1" />
+          <End Role="Repairs_tbl" Type="Self.Repairs_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parts_tbl">
+              <PropertyRef Name="IdPart" />
+            </Principal>
+            <Dependent Role="Repairs_tbl">
+              <PropertyRef Name="IdPart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_tbl_Positions_tbl">
+          <End Role="Positions_tbl" Type="Self.Positions_tbl" Multiplicity="0..1" />
+          <End Role="Users_tbl" Type="Self.Users_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions_tbl">
+              <PropertyRef Name="IdPosition" />
+            </Principal>
+            <Dependent Role="Users_tbl">
+              <PropertyRef Name="IdPosition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreroomEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers_tbl" EntityType="Self.Customers_tbl" />
+          <EntitySet Name="Parts_tbl" EntityType="Self.Parts_tbl" />
+          <EntitySet Name="PartsManufacturers_tbl" EntityType="Self.PartsManufacturers_tbl" />
+          <EntitySet Name="Positions_tbl" EntityType="Self.Positions_tbl" />
+          <EntitySet Name="Repairs_tbl" EntityType="Self.Repairs_tbl" />
+          <EntitySet Name="Users_tbl" EntityType="Self.Users_tbl" />
+          <EntitySet Name="Vehicles_tbl" EntityType="Self.Vehicles_tbl" />
+          <AssociationSet Name="FK_Customers_tbl_Vehicles_tbl" Association="Self.FK_Customers_tbl_Vehicles_tbl">
+            <End Role="Vehicles_tbl" EntitySet="Vehicles_tbl" />
+            <End Role="Customers_tbl" EntitySet="Customers_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repairs_tbl_Customers_tbl" Association="Self.FK_Repairs_tbl_Customers_tbl">
+            <End Role="Customers_tbl" EntitySet="Customers_tbl" />
+            <End Role="Repairs_tbl" EntitySet="Repairs_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parts_tbl_PartsManufacturers_tbl" Association="Self.FK_Parts_tbl_PartsManufacturers_tbl">
+            <End Role="PartsManufacturers_tbl" EntitySet="PartsManufacturers_tbl" />
+            <End Role="Parts_tbl" EntitySet="Parts_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repairs_tbl_Parts_tbl" Association="Self.FK_Repairs_tbl_Parts_tbl">
+            <End Role="Parts_tbl" EntitySet="Parts_tbl" />
+            <End Role="Repairs_tbl" EntitySet="Repairs_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_tbl_Positions_tbl" Association="Self.FK_Users_tbl_Positions_tbl">
+            <End Role="Positions_tbl" EntitySet="Positions_tbl" />
+            <End Role="Users_tbl" EntitySet="Users_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StoreroomModelStoreContainer" CdmEntityContainer="StoreroomEntities">
+          <EntitySetMapping Name="Customers_tbl">
+            <EntityTypeMapping TypeName="StoreroomModel.Customers_tbl">
+              <MappingFragment StoreEntitySet="Customers_tbl">
+                <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
+                <ScalarProperty Name="IdVehicle" ColumnName="IdVehicle" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parts_tbl">
+            <EntityTypeMapping TypeName="StoreroomModel.Parts_tbl">
+              <MappingFragment StoreEntitySet="Parts_tbl">
+                <ScalarProperty Name="IdPart" ColumnName="IdPart" />
+                <ScalarProperty Name="IdManufacturer" ColumnName="IdManufacturer" />
+                <ScalarProperty Name="PartName" ColumnName="PartName" />
+                <ScalarProperty Name="ManufacturerCode" ColumnName="ManufacturerCode" />
+                <ScalarProperty Name="Orginal" ColumnName="Orginal" />
+                <ScalarProperty Name="Artificial" ColumnName="Artificial" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MinimalStock" ColumnName="MinimalStock" />
+                <ScalarProperty Name="AutomaticOrder" ColumnName="AutomaticOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartsManufacturers_tbl">
+            <EntityTypeMapping TypeName="StoreroomModel.PartsManufacturers_tbl">
+              <MappingFragment StoreEntitySet="PartsManufacturers_tbl">
+                <ScalarProperty Name="IdManufacturer" ColumnName="IdManufacturer" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions_tbl">
+            <EntityTypeMapping TypeName="StoreroomModel.Positions_tbl">
+              <MappingFragment StoreEntitySet="Positions_tbl">
+                <ScalarProperty Name="IdPosition" ColumnName="IdPosition" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repairs_tbl">
+            <EntityTypeMapping TypeName="StoreroomModel.Repairs_tbl">
+              <MappingFragment StoreEntitySet="Repairs_tbl">
+                <ScalarProperty Name="IdRepair" ColumnName="IdRepair" />
+                <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
+                <ScalarProperty Name="DateOfCarReception" ColumnName="DateOfCarReception" />
+                <ScalarProperty Name="RepairStartDate" ColumnName="RepairStartDate" />
+                <ScalarProperty Name="Station" ColumnName="Station" />
+                <ScalarProperty Name="RepairEndDate" ColumnName="RepairEndDate" />
+                <ScalarProperty Name="IdPart" ColumnName="IdPart" />
+                <ScalarProperty Name="QuantityOfParts" ColumnName="QuantityOfParts" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users_tbl">
+            <EntityTypeMapping TypeName="StoreroomModel.Users_tbl">
+              <MappingFragment StoreEntitySet="Users_tbl">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="IdPosition" ColumnName="IdPosition" />
+                <ScalarProperty Name="Permission" ColumnName="Permission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicles_tbl">
+            <EntityTypeMapping TypeName="StoreroomModel.Vehicles_tbl">
+              <MappingFragment StoreEntitySet="Vehicles_tbl">
+                <ScalarProperty Name="IdVehicle" ColumnName="IdVehicle" />
+                <ScalarProperty Name="VehicleBrand" ColumnName="VehicleBrand" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="VINnumber" ColumnName="VINnumber" />
+                <ScalarProperty Name="REGnumber" ColumnName="REGnumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

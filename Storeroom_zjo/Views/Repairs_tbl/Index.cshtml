@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Storeroom_zjo.Models.Repairs_tbl>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfCarReception)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RepairStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Station)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RepairEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantityOfParts)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customers_tbl.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parts_tbl.PartName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfCarReception)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RepairStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Station)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RepairEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantityOfParts)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customers_tbl.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parts_tbl.PartName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdRepair }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdRepair }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdRepair })
+        </td>
+    </tr>
+}
+
+</table>

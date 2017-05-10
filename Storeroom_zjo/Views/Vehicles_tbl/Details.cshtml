@@ -1,0 +1,58 @@
+﻿@model Storeroom_zjo.Models.Vehicles_tbl
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vehicles_tbl</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleBrand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleBrand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VINnumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VINnumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REGnumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REGnumber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdVehicle }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

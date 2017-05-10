@@ -1,0 +1,82 @@
+﻿@model Storeroom_zjo.Models.Parts_tbl
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Parts_tbl</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PartName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManufacturerCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManufacturerCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Orginal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Orginal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Artificial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Artificial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinimalStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinimalStock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AutomaticOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AutomaticOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartsManufacturers_tbl.Company)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartsManufacturers_tbl.Company)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdPart }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
