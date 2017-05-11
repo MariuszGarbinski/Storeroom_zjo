@@ -1,17 +1,16 @@
 ﻿@model Storeroom_zjo.Models.Vehicles_tbl
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Szczegóły";
 }
 
-<h2>Details</h2>
+<h2>Szczegóły pojazdu</h2>
 
 <div>
-    <h4>Vehicles_tbl</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.VehicleBrand)
+            Marka
         </dt>
 
         <dd>
@@ -19,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Model)
+            Model
         </dt>
 
         <dd>
@@ -27,7 +26,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.VehicleType)
+            Typ
         </dt>
 
         <dd>
@@ -35,7 +34,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.VINnumber)
+            Numer VIN
         </dt>
 
         <dd>
@@ -43,7 +42,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.REGnumber)
+            Numer REJESTRACYJNY
         </dt>
 
         <dd>
@@ -53,6 +52,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdVehicle }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edytuj", "Edit", new { id = Model.IdVehicle }, new { @class = "btn btn-warning" } ) |
+    @Html.ActionLink("Powrót do listy pojazdów", "Index", null, new { @class = "btn btn-primary" } )
 </p>

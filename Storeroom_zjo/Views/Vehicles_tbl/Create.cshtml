@@ -1,10 +1,10 @@
 ﻿@model Storeroom_zjo.Models.Vehicles_tbl
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Dodawanie";
 }
 
-<h2>Create</h2>
+<h2>Dodaj</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,44 +12,44 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Vehicles_tbl</h4>
+        <h4>Pojazd</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.VehicleBrand, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="control-label col-md-3"><strong>Marka</strong></div>
+            <div class="col-md-9">
                 @Html.EditorFor(model => model.VehicleBrand, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.VehicleBrand, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="control-label col-md-3"><strong>Model</strong></div>
+            <div class="col-md-9">
                 @Html.EditorFor(model => model.Model, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Model, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.VehicleType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="control-label col-md-3"><strong>Typ</strong></div>
+            <div class="col-md-9">
                 @Html.EditorFor(model => model.VehicleType, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.VehicleType, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.VINnumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="control-label col-md-3"><strong>Numer VIN</strong></div>
+            <div class="col-md-9">
                 @Html.EditorFor(model => model.VINnumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.VINnumber, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.REGnumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="control-label col-md-3"><strong>Numer REJESTRACYJNY</strong></div>
+            <div class="col-md-9">
                 @Html.EditorFor(model => model.REGnumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.REGnumber, "", new { @class = "text-danger" })
             </div>
@@ -57,14 +57,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Zapisz" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Powrót do listy pojazdów", "Index", null, new { @class = "btn btn-primary" } )
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

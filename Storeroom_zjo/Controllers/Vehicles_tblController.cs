@@ -13,6 +13,7 @@ namespace Storeroom_zjo.Controllers
     public class Vehicles_tblController : Controller
     {
         private StoreroomEntities db = new StoreroomEntities();
+        private object id;
 
         // GET: Vehicles_tbl
         public ActionResult Index()
@@ -52,7 +53,8 @@ namespace Storeroom_zjo.Controllers
             {
                 db.Vehicles_tbl.Add(vehicles_tbl);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return RedirectToAction("Create", "Customers_tbl");
             }
 
             return View(vehicles_tbl);
