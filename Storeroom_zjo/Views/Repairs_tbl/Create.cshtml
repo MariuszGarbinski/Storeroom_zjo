@@ -1,10 +1,10 @@
 ﻿@model Storeroom_zjo.Models.Repairs_tbl
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Nowa naprawa";
 }
 
-<h2>Create</h2>
+<h2>Dodaj</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,11 +12,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Repairs_tbl</h4>
+        <h4>Naprawa</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.IdCustomer, "IdCustomer", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class = "control-label col-md-2"><strong>Klient</strong></div>
             <div class="col-md-10">
                 @Html.DropDownList("IdCustomer", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdCustomer, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DateOfCarReception, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Data rejestracji</strong></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DateOfCarReception, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DateOfCarReception, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RepairStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Data rozpoczęcia naprawy</strong></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RepairStartDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RepairStartDate, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Station, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Stanowisko</strong></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Station, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Station, "", new { @class = "text-danger" })
@@ -48,7 +48,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RepairEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Data zakończenia naprawy</strong></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RepairEndDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RepairEndDate, "", new { @class = "text-danger" })
@@ -56,7 +56,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdPart, "IdPart", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Część</strong></div>
             <div class="col-md-10">
                 @Html.DropDownList("IdPart", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdPart, "", new { @class = "text-danger" })
@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.QuantityOfParts, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Ilość części</strong></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.QuantityOfParts, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.QuantityOfParts, "", new { @class = "text-danger" })
@@ -72,7 +72,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Komentarz</strong></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
@@ -80,7 +80,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Cost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Koszt</strong></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Cost, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
@@ -88,7 +88,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Rabat</strong></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
@@ -97,14 +97,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Zapisz" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Powrót do listy napraw", "Index", null, new { @class = "btn btn-primary" })
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

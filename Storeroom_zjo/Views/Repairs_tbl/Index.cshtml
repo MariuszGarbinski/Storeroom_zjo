@@ -1,45 +1,45 @@
 ﻿@model IEnumerable<Storeroom_zjo.Models.Repairs_tbl>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Naprawy";
 }
 
-<h2>Index</h2>
+<h2>Lista napraw</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nowa naprawa", "Create", null, new { @class = "btn btn-primary" } )
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DateOfCarReception)
+            Data przyjęcia
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RepairStartDate)
+            Data rozpoczęcia naprawy
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Station)
+            Stanowisko
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RepairEndDate)
+            Data zakończenia naprawy
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.QuantityOfParts)
+            Ilość części
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            komentarz
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cost)
+            Koszt
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Discount)
+            Promocja
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Customers_tbl.Name)
+            Klient
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Parts_tbl.PartName)
+            Część
         </th>
         <th></th>
     </tr>
@@ -77,9 +77,9 @@
             @Html.DisplayFor(modelItem => item.Parts_tbl.PartName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdRepair }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdRepair }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdRepair })
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.IdRepair }, new { @class = "btn btn-warning" } ) |
+            @Html.ActionLink("Sczegóły", "Details", new { id=item.IdRepair }, new { @class = "btn btn-primary" } ) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.IdRepair }, new { @class = "btn btn-danger" } )
         </td>
     </tr>
 }

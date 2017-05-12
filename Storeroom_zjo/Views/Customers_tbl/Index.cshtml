@@ -1,42 +1,42 @@
 ﻿@model IEnumerable<Storeroom_zjo.Models.Customers_tbl>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Klienci";
 }
 
-<h2>Index</h2>
+<h2>Lista klientów</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj nowego klienta", "Create", null, new { @class = "btn btn-primary" } )
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Imie
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Surname)
+            Nazwisko
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            Adres
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PostCode)
+            Kod pocztowy
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City)
+            Miasto
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Country)
+            Kraj
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            Numer telefonu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Vehicles_tbl.VehicleBrand)
+            Marka pojazdu
         </th>
         <th></th>
     </tr>
@@ -71,9 +71,9 @@
             @Html.DisplayFor(modelItem => item.Vehicles_tbl.VehicleBrand)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdCustomer }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdCustomer }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdCustomer })
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.IdCustomer }, new { @class = "btn btn-warning" } ) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.IdCustomer }, new { @class = "btn btn-primary" } ) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.IdCustomer }, new { @class = "btn btn-danger" } )
         </td>
     </tr>
 }
