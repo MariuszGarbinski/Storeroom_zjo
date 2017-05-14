@@ -1,93 +1,83 @@
 ﻿@model Storeroom_zjo.Models.Repairs_tbl
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Usuwanie";
 }
 
-<h2>Delete</h2>
+<h2>Usuń</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Czy na pewno chcesz usunąć tą naprawę?</h3>
 <div>
-    <h4>Repairs_tbl</h4>
+    <h4>Naprawa</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfCarReception)
+        <dt style="width:200px;">
+            Data rejestracji
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.DateOfCarReception)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RepairStartDate)
+        <dt style="width:200px;">
+            Data rozpoczęcia naprawy
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.RepairStartDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Station)
+        <dt style="width:200px;">
+            Stanowisko
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.Station)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RepairEndDate)
+        <dt style="width:200px;">
+            Data zakończenia naprawy
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.RepairEndDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.QuantityOfParts)
+        <dt style="width:200px;">
+            Ilość części
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.QuantityOfParts)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
+        <dt style="width:200px;">
+            Komentarz
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cost)
+        <dt style="width:200px;">
+            Koszt naprawy
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.Cost)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Discount)
+        <dt style="width:200px;">
+            Rabat
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.Discount)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Customers_tbl.Name)
+        <dt style="width:200px;">
+            Klient
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.Customers_tbl.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Parts_tbl.PartName)
+        <dt style="width:200px;">
+            Nazwa części
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.Parts_tbl.PartName)
         </dd>
 
@@ -97,8 +87,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Usuń" class="btn btn-danger" /> |
+            @Html.ActionLink("powrót do listy napraw", "Index", null, new { @class = "btn btn-primary" } )
         </div>
     }
 </div>

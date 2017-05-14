@@ -47,16 +47,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.DateOfCarReception)
+            @Convert.ToString(string.Format("{0:dd-MM-yyyy}", item.DateOfCarReception))
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RepairStartDate)
+            @Convert.ToString(string.Format("{0:dd-MM-yyyy}", item.RepairStartDate))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Station)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RepairEndDate)
+            @Convert.ToString(string.Format("{0:dd-MM-yyyy}", item.RepairEndDate))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.QuantityOfParts)

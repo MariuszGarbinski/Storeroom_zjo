@@ -65,7 +65,7 @@ namespace Storeroom_zjo.Controllers
 
         // GET: Repairs_tbl/Edit/5
         public ActionResult Edit(int? id)
-        {
+        { 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

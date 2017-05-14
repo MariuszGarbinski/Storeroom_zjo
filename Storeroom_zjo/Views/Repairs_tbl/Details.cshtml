@@ -1,98 +1,87 @@
 ﻿@model Storeroom_zjo.Models.Repairs_tbl
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Szczegóły";
 }
 
-<h2>Details</h2>
+<h2>Szczegóły</h2>
 
 <div>
-    <h4>Repairs_tbl</h4>
+    <h4>Naprawy</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfCarReception)
+        <dt style="width:200px;">
+            Data przyjęcia
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateOfCarReception)
+        <dd style="padding-left:30px;">
+            @Convert.ToString(string.Format("{0:dd-MM-yyyy}", Model.DateOfCarReception))
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RepairStartDate)
+        <dt style="width:200px;">
+            Data rozpoczęcia naprawy
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RepairStartDate)
+        <dd style="padding-left:30px;">
+            @Convert.ToString(string.Format("{0:dd-MM-yyyy}", Model.RepairStartDate))
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Station)
+        <dt style="width:200px;">
+            Stanowisko
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.Station)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RepairEndDate)
+        <dt style="width:200px;">
+            Data zakończenia naprawy
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RepairEndDate)
+        <dd style="padding-left:30px;">
+            @Convert.ToString(string.Format("{0:dd-MM-yyyy}", Model.RepairEndDate))
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.QuantityOfParts)
+        <dt style="width:200px;">
+            Ilość części
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.QuantityOfParts)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
+        <dt style="width:200px;">
+            Komentarz
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cost)
+        <dt style="width:200px;">
+            Koszt naprawy
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.Cost)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Discount)
+        <dt style="width:200px;">
+            Rabat
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.Discount)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Customers_tbl.Name)
+        <dt style="width:200px;">
+            Imie klienta
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.Customers_tbl.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Parts_tbl.PartName)
+        <dt style="width:200px;">
+            Nazwa części
         </dt>
-
-        <dd>
+        <dd style="padding-left:30px;">
             @Html.DisplayFor(model => model.Parts_tbl.PartName)
         </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRepair }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edytuj", "Edit", new { id = Model.IdRepair }, new { @class = "btn btn-warning" } ) |
+    @Html.ActionLink("Powrót do listy napraw", "Index", null, new { @class = "btn btn-primary" } )
 </p>
