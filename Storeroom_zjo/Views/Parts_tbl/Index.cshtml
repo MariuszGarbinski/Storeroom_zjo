@@ -1,39 +1,39 @@
 ﻿@model IEnumerable<Storeroom_zjo.Models.Parts_tbl>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista";
 }
 
-<h2>Index</h2>
+<h2>Lista części</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj część", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PartName)
+            Nazwa
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ManufacturerCode)
+            Kod producenta
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Orginal)
+            Część orginalna
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Artificial)
+            Zamiennik
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Quantity)
+            Ilość w magazynie
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MinimalStock)
+            Minimalna ilość
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AutomaticOrder)
+            Auto zamówienie
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PartsManufacturers_tbl.Company)
+            Producent
         </th>
         <th></th>
     </tr>
@@ -65,9 +65,23 @@
             @Html.DisplayFor(modelItem => item.PartsManufacturers_tbl.Company)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdPart }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdPart }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdPart })
+            @if (item.Quantity <= item.MinimalStock && item.AutomaticOrder == false)
+            {
+                <div class="label-warning">Minimalna ilość w magazynie. Zamów część!</div>
+            }
+            else if (item.Quantity <= item.MinimalStock && item.AutomaticOrder == true)
+            {
+                <div class="label-success">Wysłano zamówienie części!</div>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.IdPart }, new { @class = "btn btn-warning" }) 
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.IdPart }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Usuń", "Delete", new { id=item.IdPart }, new { @class = "btn btn-danger" })
+            @if (item.Quantity <= item.MinimalStock && item.AutomaticOrder == false)
+            {
+                <div class="btn btn-info">Zamów część</div>
+            }
         </td>
     </tr>
 }

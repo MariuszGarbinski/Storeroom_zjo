@@ -1,10 +1,10 @@
 ﻿@model Storeroom_zjo.Models.Parts_tbl
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edycja";
 }
 
-<h2>Edit</h2>
+<h2>Edycja części</h2>
 
 
 @using (Html.BeginForm())
@@ -12,13 +12,13 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Parts_tbl</h4>
+        <h4>Część</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IdPart)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdManufacturer, "IdManufacturer", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class = "control-label col-md-2"><strong>Producent</strong></div>
             <div class="col-md-10">
                 @Html.DropDownList("IdManufacturer", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdManufacturer, "", new { @class = "text-danger" })
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PartName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Nazwa części</strong></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PartName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PartName, "", new { @class = "text-danger" })
@@ -34,7 +34,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ManufacturerCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Kod części</strong></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ManufacturerCode, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ManufacturerCode, "", new { @class = "text-danger" })
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Orginal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Część oryginalna</strong></div>
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Orginal)
@@ -52,7 +52,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Artificial, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Zamiennik</strong></div>
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Artificial)
@@ -62,7 +62,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Ilość na magazynie</strong></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
@@ -70,7 +70,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MinimalStock, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Minimalna ilość</strong></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.MinimalStock, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MinimalStock, "", new { @class = "text-danger" })
@@ -78,7 +78,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AutomaticOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2"><strong>Autozamówienie</strong></div>
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.AutomaticOrder)
@@ -89,14 +89,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Zapisz" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Powrót do listy części", "Index", null, new { @class = "btn btn-primary" })
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
