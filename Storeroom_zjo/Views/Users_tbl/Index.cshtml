@@ -4,21 +4,23 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Użytkownicy</h2>
+
+
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nowy Użytkownik", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            Nazwa Użytkownika
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Permission)
+            Dostęp
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Positions_tbl.Position)
+            Stanowisko
         </th>
         <th></th>
     </tr>
@@ -35,9 +37,9 @@
             @Html.DisplayFor(modelItem => item.Positions_tbl.Position)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdUser }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdUser }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdUser })
+            @Html.ActionLink("Edycja", "Edit", new { id=item.IdUser }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.IdUser }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.IdUser }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
