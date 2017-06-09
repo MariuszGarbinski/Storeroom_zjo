@@ -1,0 +1,103 @@
+﻿<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal">
+
+                <span><img src="~/Content/ikonka.jpg" class="ikona" /></span>
+
+            <div class="modal-header">
+          <div id="messenger"></div>
+            </div>
+         
+                <br />
+                    <div class="form-group">
+                        <label for="UserName" class="col-lg-3 control-label"> Użytkownik:</label>
+                        <input class="form-control" id="UserName" placeholder="Nazwa użytkownika" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Password" class="col-lg-3 control-label"> Hasło:</label>
+                        <input class="form-control" id="Password" placeholder="Hasło" type="password">
+                    </div>
+     
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary btn-primary pull-left RbtnMargin" id="Login">Zaloguj <span class="glyphicon glyphicon-ok"> </span></a>
+
+                <button type="submit" class="btn btn-primary btn-primary pull-left RbtnMargin" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Wyjdź</button>
+            </div>
+                </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal-dialog{
+        max-width: 480px;
+    }
+    .modal-dialog{
+        transform: translate(0, 50%) !important;
+        -ms-transform: translate(0, 50%) !important
+        }
+
+    .RbtnMargin{
+        margin-left: 90px;
+    }
+    .failed
+    {
+        text-align:center;
+        font-weight:bold;
+        font-family:"Times New Roman";
+        color: white;
+        background-color:red;
+    }
+
+    .ikona
+    {
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+
+    }
+</style>
+
+<script>
+    $(document).ready(function (){
+    $("#myModal").modal({
+        backdrop: 'static',
+    });
+    });
+
+    $("#Login").click(function()
+        {
+        var dataObject = { UserName: $("#UserName").val(), Password: $("#Password").val() };
+        $.ajax({
+            url: '@Url.Action("Login","User")',
+            type: "POST",
+            data: dataObject,
+            datatype: "json",
+            success: function (result)
+            {
+                if (result.toString() == "Sukces!")
+                {
+
+                    $("#myModal").modal('hide');
+                    window.location.href = '@Url.Action("Index","Home")';
+                }
+                else
+                {
+                    $("#UserName").val("");
+                    $("#Password").val("");
+                    $("#UserName").focus();
+                    $("#messenger").html('<div class="failed">' + result +'</div');
+                }
+            },
+            error: function(result)
+            {
+                $("#UserName").val("");
+                $("#Password").val("");
+                $("#UserName").focus();
+                $("#messenger").html('<div class="failed"> Błąd! Spróbuj jeszcze raz </div');
+            }
+            });
+        })
+</script>
