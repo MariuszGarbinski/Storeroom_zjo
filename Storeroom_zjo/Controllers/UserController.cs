@@ -25,6 +25,7 @@ namespace Storeroom_zjo.Controllers
                 if (UserBL.CheckUserLogin(User) > 0)
                 {
                     message = "Sukces!";
+                    
                 }
                 else
                 {

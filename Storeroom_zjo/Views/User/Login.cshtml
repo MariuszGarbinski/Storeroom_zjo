@@ -79,7 +79,9 @@
             {
                 if (result.toString() == "Sukces!")
                 {
+
                     $("#myModal").modal('hide');
+                    window.location.href = '@Url.Action("Index","Home")';
                 }
                 else
                 {
