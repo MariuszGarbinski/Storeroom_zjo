@@ -109,6 +109,7 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ikonka.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -142,7 +143,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -152,6 +155,7 @@
     <Compile Include="Controllers\Parts_tblController.cs" />
     <Compile Include="Controllers\Positions_tblController.cs" />
     <Compile Include="Controllers\Repairs_tblController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\Users_tblController.cs" />
     <Compile Include="Controllers\Vehicles_tblController.cs" />
     <Compile Include="Global.asax.cs">
@@ -244,6 +248,7 @@
     <Content Include="Views\Vehicles_tbl\Edit.cshtml" />
     <Content Include="Views\Vehicles_tbl\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -251,10 +256,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ModelLogin.BL\ModelLogin.BL.csproj">
+      <Project>{a455d88e-0b8d-41c5-874a-5976ce66b587}</Project>
+      <Name>ModelLogin.BL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
